@@ -10,6 +10,7 @@ import com.dhl.appscopviewmodel.vm.AppScope
 import com.dhl.appscopviewmodel.vm.EditViewModel
 
 private const val TAG = "ThirdActivity"
+
 class ThirdActivity : BaseActivity() {
 
     private lateinit var binding: ActivitySecBinding
@@ -28,15 +29,10 @@ class ThirdActivity : BaseActivity() {
         val fab: FloatingActionButton = binding.fab
 
         fab.setOnClickListener {
-            editViewModel.inputData.setValue(binding.editQuery.text.toString())
+            // editViewModel.inputData.setValue(binding.editQuery.text.toString())
+            LiveDataBus.withSticky<String>("edit").setValue(binding.editQuery.text.toString())
             finish()
         }
-
-//        LiveDataBus.withSticky<String>("sec").observe(this, Observer {
-//            binding.editQuery.setText(it)
-//        })
-
-
 
 
     }

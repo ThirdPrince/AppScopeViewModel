@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.dhl.appscopviewmodel.ui.BaseActivity
 import com.dhl.appscopviewmodel.ui.SecActivity
+import com.dhl.appscopviewmodel.utils.LiveDataBus
 import com.dhl.appscopviewmodel.vm.AppScope
 import com.dhl.appscopviewmodel.vm.EditViewModel
 import com.dhl.appscopviewmodel.vm.MainViewModel
@@ -44,6 +45,7 @@ class MainActivity : BaseActivity() {
         }
 
         Log.e(TAG, "-----")
+
 
 
     }

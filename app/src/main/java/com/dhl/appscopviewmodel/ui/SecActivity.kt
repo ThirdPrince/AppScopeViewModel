@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import com.dhl.appscopviewmodel.R
+import com.dhl.appscopviewmodel.utils.LiveDataBus
 import com.dhl.appscopviewmodel.vm.AppScope
 import com.dhl.appscopviewmodel.vm.EditViewModel
 
@@ -30,14 +31,19 @@ class SecActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_edit)
-        editViewModel.inputData.observe(this, Observer {
-            tv.text = it
-            Log.e(TAG,"it = $it")
-        })
+//        editViewModel.inputData.observe(this, Observer {
+//            tv.text = it
+//            Log.e(TAG,"it = $it")
+//        })
         findViewById<Button>(R.id.btn).setOnClickListener {
             val intent = Intent(this,ThirdActivity::class.java)
             startActivity(intent)
         }
+
+        LiveDataBus.with<String>("edit").observe(this, Observer {
+            tv.text = it
+            Log.e(TAG,"it = $it")
+        })
 
     }
 }
