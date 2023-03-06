@@ -2,6 +2,7 @@ package com.dhl.appscopviewmodel.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
@@ -40,10 +41,10 @@ class SecActivity : BaseActivity() {
             startActivity(intent)
         }
 
-        LiveDataBus.with<String>("edit").observe(this, Observer {
-            tv.text = it
+        LiveDataBus.with<String>("edit").observeForever {
             Log.e(TAG,"it = $it")
-        })
+            tv.text = it
+        }
 
     }
 }

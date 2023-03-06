@@ -14,8 +14,6 @@ class NoStickyLiveData<T>(
 
     private val TAG = "StickyLiveData"
 
-
-
     private var mVersion = 0
 
 
@@ -25,15 +23,19 @@ class NoStickyLiveData<T>(
 
 
     override fun setValue(value: T) {
-        super.setValue(value)
         mVersion++
+        super.setValue(value)
+
     }
 
     override fun postValue(value: T) {
-        super.postValue(value)
         mVersion++
+        super.postValue(value)
     }
 
+    override fun observeForever(observer: Observer<in T>) {
+        super.observeForever(WrapperObserver(this,observer,sticky))
+    }
 
     override fun observe(owner: LifecycleOwner, observer: Observer<in T>) {
         observerSticky(owner, observer, sticky)
@@ -48,5 +50,10 @@ class NoStickyLiveData<T>(
                 }
             }
         })
+    }
+
+    private fun observerSticky( observer: Observer<in T>,sticky: Boolean) {
+        super.observeForever(WrapperObserver(this, observer,sticky))
+
     }
 }
