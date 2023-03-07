@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 class WrapperObserver<T>(
     var liveData: NoStickyLiveData<T>,
     var observer: Observer<in T>,
-    sticky: Boolean
+    sticky: Boolean,observerForever:Boolean = false
 ) : Observer<T> {
 
     private val TAG = "WrapperObserver"
@@ -31,6 +31,7 @@ class WrapperObserver<T>(
         }
         mLastVersion = liveData.getVersion()
         observer?.onChanged(t)
+
     }
 
 

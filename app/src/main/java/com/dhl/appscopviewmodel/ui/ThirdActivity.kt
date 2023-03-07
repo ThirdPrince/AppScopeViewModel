@@ -30,7 +30,7 @@ class ThirdActivity : BaseActivity() {
 
         fab.setOnClickListener {
             // editViewModel.inputData.setValue(binding.editQuery.text.toString())
-            LiveDataBus.withSticky<String>("edit").setValue(binding.editQuery.text.toString())
+            LiveDataBus.with<String>("edit").setValue(binding.editQuery.text.toString())
             finish()
         }
 

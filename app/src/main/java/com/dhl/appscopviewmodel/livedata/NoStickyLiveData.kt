@@ -1,6 +1,10 @@
 package com.dhl.appscopviewmodel.livedata
 
+import android.os.Process
+import android.util.Log
 import androidx.lifecycle.*
+import androidx.lifecycle.ProcessLifecycleOwner
+import com.dhl.appscopviewmodel.app.MyApp
 import java.util.concurrent.ConcurrentHashMap
 
 /**
@@ -16,6 +20,7 @@ class NoStickyLiveData<T>(
 
     private var mVersion = 0
 
+    val mHashMap = ConcurrentHashMap<String, Observer<*>>()
 
     fun getVersion(): Int {
         return mVersion
@@ -31,10 +36,34 @@ class NoStickyLiveData<T>(
     override fun postValue(value: T) {
         mVersion++
         super.postValue(value)
+
     }
 
-    override fun observeForever(observer: Observer<in T>) {
-        super.observeForever(WrapperObserver(this,observer,sticky))
+     override fun observeForever(observer: Observer<in T>) {
+         if(!mHashMap.containsKey(eventName)){
+            val wrapperObserver =  WrapperObserver(this,observer,sticky,true)
+             mHashMap[eventName] = wrapperObserver
+             super.observeForever(wrapperObserver)
+         }
+
+//         map.let {
+//             it?.remove(eventName)
+//         }
+//        ProcessLifecycleOwner.get().lifecycle.addObserver(object : LifecycleObserver {
+//
+//            @OnLifecycleEvent(Lifecycle.Event.ON_START)
+//            fun onForeground(){
+//                Log.e(TAG,"onForeground")
+//            }
+//
+//            @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+//            fun onDestroy() {
+//                Log.e(TAG,"ON_STOP")
+//                mHashMap.clear()
+//
+//            }
+//        })
+
     }
 
     override fun observe(owner: LifecycleOwner, observer: Observer<in T>) {
@@ -50,6 +79,11 @@ class NoStickyLiveData<T>(
                 }
             }
         })
+
+
+
+
+
     }
 
     private fun observerSticky( observer: Observer<in T>,sticky: Boolean) {

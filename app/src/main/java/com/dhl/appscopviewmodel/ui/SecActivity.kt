@@ -41,9 +41,15 @@ class SecActivity : BaseActivity() {
             startActivity(intent)
         }
 
+//        LiveDataBus.with<String>("edit").observe(this, Observer {
+//            Log.e(TAG,"it = $it")
+//            tv.text = it
+//        })
         LiveDataBus.with<String>("edit").observeForever {
             Log.e(TAG,"it = $it")
-            tv.text = it
+            findViewById<TextView>(R.id.tv).text = it
+
+
         }
 
     }

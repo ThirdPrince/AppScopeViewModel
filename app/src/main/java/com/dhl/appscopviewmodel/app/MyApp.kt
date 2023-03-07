@@ -3,8 +3,7 @@ package com.dhl.appscopviewmodel.app
 import android.app.Application
 import android.os.Process
 import android.util.Log
-import androidx.lifecycle.ViewModelStore
-import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.*
 import com.dhl.appscopviewmodel.vm.AppScope
 
 
@@ -27,6 +26,18 @@ class MyApp : Application(), ViewModelStoreOwner {
         super.onCreate()
         Log.e(TAG, "onCreate -->" + Process.myPid())
         AppScope.init(this)
+        ProcessLifecycleOwner.get().lifecycle.addObserver(object : LifecycleObserver {
+
+            @OnLifecycleEvent(Lifecycle.Event.ON_START)
+            fun onForeground(){
+                Log.e(TAG,"onForeground")
+            }
+
+            @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+            fun onDestroy() {
+                Log.e(TAG,"ON_PAUSE")
+            }
+        })
 
     }
 

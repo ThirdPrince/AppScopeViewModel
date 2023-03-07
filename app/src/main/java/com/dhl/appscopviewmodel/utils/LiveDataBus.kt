@@ -13,6 +13,10 @@ object LiveDataBus {
 
     private val mHashMap = ConcurrentHashMap<String, NoStickyLiveData<*>>()
 
+
+
+
+
     /**
      * 不带粘性事件
      */
@@ -46,6 +50,8 @@ object LiveDataBus {
         }
         return liveData as NoStickyLiveData<T>
     }
+
+
 
 
 }
