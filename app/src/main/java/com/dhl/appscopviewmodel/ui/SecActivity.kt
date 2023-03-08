@@ -3,6 +3,7 @@ package com.dhl.appscopviewmodel.ui
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
@@ -20,9 +21,7 @@ private const val TAG = "SecActivity"
 class SecActivity : BaseActivity() {
 
 
-    private val tv:TextView by lazy{
-        findViewById<TextView>(R.id.tv)
-    }
+    private var tv:TextView ?= null
 
     private val editViewModel: EditViewModel by lazy {
         AppScope.getAppScopeViewModel(EditViewModel::class.java)
@@ -32,10 +31,6 @@ class SecActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_edit)
-//        editViewModel.inputData.observe(this, Observer {
-//            tv.text = it
-//            Log.e(TAG,"it = $it")
-//        })
         findViewById<Button>(R.id.btn).setOnClickListener {
             val intent = Intent(this,ThirdActivity::class.java)
             startActivity(intent)
@@ -45,12 +40,24 @@ class SecActivity : BaseActivity() {
 //            Log.e(TAG,"it = $it")
 //            tv.text = it
 //        })
+       // tv.text = "heihei"
+        tv = findViewById(R.id.tv);
+        Handler(Looper.getMainLooper()).postDelayed({
+            tv?.text = "ttttttt"
+        },3000)
         LiveDataBus.with<String>("edit").observeForever {
-            Log.e(TAG,"it = $it")
-            findViewById<TextView>(R.id.tv).text = it
-
-
+            Log.e(TAG,"it = $it-->${Thread.currentThread().name}}")
+            it.let {
+                tv?.setText(it)
+            }
         }
 
+
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.e(TAG," onDestroy}")
+    }
+
 }

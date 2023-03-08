@@ -20,7 +20,10 @@ class NoStickyLiveData<T>(
 
     private var mVersion = 0
 
-    val mHashMap = ConcurrentHashMap<String, Observer<*>>()
+    /**
+     * 记录 绑定的Observer
+     */
+    private val mHashMap = ConcurrentHashMap<String, Observer<*>>()
 
     fun getVersion(): Int {
         return mVersion
@@ -39,30 +42,15 @@ class NoStickyLiveData<T>(
 
     }
 
-     override fun observeForever(observer: Observer<in T>) {
-         if(!mHashMap.containsKey(eventName)){
-            val wrapperObserver =  WrapperObserver(this,observer,sticky,true)
-             mHashMap[eventName] = wrapperObserver
-             super.observeForever(wrapperObserver)
-         }
+    override fun observeForever(observer: Observer<in T>) {
 
-//         map.let {
-//             it?.remove(eventName)
-//         }
-//        ProcessLifecycleOwner.get().lifecycle.addObserver(object : LifecycleObserver {
-//
-//            @OnLifecycleEvent(Lifecycle.Event.ON_START)
-//            fun onForeground(){
-//                Log.e(TAG,"onForeground")
-//            }
-//
-//            @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-//            fun onDestroy() {
-//                Log.e(TAG,"ON_STOP")
-//                mHashMap.clear()
-//
-//            }
-//        })
+        val observerExit = mHashMap[eventName]
+        if (observerExit != null) {
+            removeObserver(observerExit as Observer<in T>)
+        }
+        val wrapperObserver = WrapperObserver(this, observer, sticky, true)
+        mHashMap[eventName] = wrapperObserver
+        super.observeForever(wrapperObserver)
 
     }
 
@@ -81,13 +69,10 @@ class NoStickyLiveData<T>(
         })
 
 
-
-
-
     }
 
-    private fun observerSticky( observer: Observer<in T>,sticky: Boolean) {
-        super.observeForever(WrapperObserver(this, observer,sticky))
+    private fun observerSticky(observer: Observer<in T>, sticky: Boolean) {
+        super.observeForever(WrapperObserver(this, observer, sticky))
 
     }
 }
