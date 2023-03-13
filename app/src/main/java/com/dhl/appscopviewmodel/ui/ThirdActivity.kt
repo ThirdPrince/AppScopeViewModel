@@ -29,8 +29,8 @@ class ThirdActivity : BaseActivity() {
         val fab: FloatingActionButton = binding.fab
 
         fab.setOnClickListener {
-             editViewModel.inputDataNoSticky.setValue(binding.editQuery.text.toString())
-            //LiveDataBus.with<String>("edit").setValue(binding.editQuery.text.toString())
+             //editViewModel.inputDataNoSticky.setValue(binding.editQuery.text.toString())
+            LiveDataBus.withSticky<String>("edit").setValue(binding.editQuery.text.toString())
             finish()
         }
 

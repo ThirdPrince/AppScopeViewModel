@@ -58,8 +58,8 @@ version 与 LiveData 的version没有保持一致性，Observer 每次的初始�
     <td><img src="screenshots/2.gif"/></td>
   </tr>
   <tr>
-    <th>Example 3</th>
-    <th>Example 4</th>
+    <th>Example 3 事件总线 粘性事件</th>
+    <th>Example 4 事件总线 非粘性</th>
   </tr>
   <tr>
     <td><img src="screenshots/3.jpg"/></td>
