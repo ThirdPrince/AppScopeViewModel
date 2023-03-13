@@ -55,7 +55,7 @@ version 与 LiveData 的version没有保持一致性，Observer 每次的初始�
   </tr>
   <tr>
     <td><img src="screenshots/1.gif"/></td>
-    <td><img src="screenshots/2.jpg"/></td>
+    <td><img src="screenshots/2.gif"/></td>
   </tr>
   <tr>
     <th>Example 3</th>
