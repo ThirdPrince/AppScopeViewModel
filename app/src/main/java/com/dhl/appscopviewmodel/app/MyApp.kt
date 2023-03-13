@@ -26,18 +26,6 @@ class MyApp : Application(), ViewModelStoreOwner {
         super.onCreate()
         Log.e(TAG, "onCreate -->" + Process.myPid())
         AppScope.init(this)
-        ProcessLifecycleOwner.get().lifecycle.addObserver(object : LifecycleObserver {
-
-            @OnLifecycleEvent(Lifecycle.Event.ON_START)
-            fun onForeground(){
-                Log.e(TAG,"onForeground")
-            }
-
-            @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-            fun onDestroy() {
-                Log.e(TAG,"ON_PAUSE")
-            }
-        })
 
     }
 

@@ -50,8 +50,8 @@ version 与 LiveData 的version没有保持一致性，Observer 每次的初始�
 
 <table style="width:100%">
   <tr>
-    <th>Example 1 粘性事件 数据倒灌</th>
-    <th>Example 2 非粘性事件 数据正常</th>
+    <th>Example 1 AppScope 粘性事件 数据倒灌</th>
+    <th>Example 2 AppScope 非粘性事件 数据正常</th>
   </tr>
   <tr>
     <td><img src="screenshots/1.gif"/></td>
@@ -62,7 +62,7 @@ version 与 LiveData 的version没有保持一致性，Observer 每次的初始�
     <th>Example 4 事件总线 非粘性</th>
   </tr>
   <tr>
-    <td><img src="screenshots/3.jpg"/></td>
-    <td><img src="screenshots/4.jpg"/></td>
+    <td><img src="screenshots/3.gif"/></td>
+    <td><img src="screenshots/4.gif"/></td>
   </tr>
   </table>
