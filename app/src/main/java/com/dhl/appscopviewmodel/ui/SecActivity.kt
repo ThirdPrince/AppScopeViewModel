@@ -36,21 +36,19 @@ class SecActivity : BaseActivity() {
             startActivity(intent)
         }
 
-//        LiveDataBus.with<String>("edit").observe(this, Observer {
-//            Log.e(TAG,"it = $it")
-//            tv.text = it
-//        })
-       // tv.text = "heihei"
-        tv = findViewById(R.id.tv);
-        Handler(Looper.getMainLooper()).postDelayed({
-            tv?.text = "ttttttt"
-        },3000)
-        LiveDataBus.with<String>("edit").observeForever {
-            Log.e(TAG,"it = $it-->${Thread.currentThread().name}}")
+        tv = findViewById(R.id.tv)
+
+        editViewModel.inputDataNoSticky.observe(this, Observer {
             it.let {
-                tv?.setText(it)
+                tv?.text = it
             }
-        }
+        })
+//        LiveDataBus.with<String>("edit").observeForever {
+//            Log.e(TAG,"it = $it-->${Thread.currentThread().name}}")
+//            it.let {
+//                tv?.text = it
+//            }
+//        }
 
 
     }

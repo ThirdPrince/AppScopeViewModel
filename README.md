@@ -50,8 +50,8 @@ version 与 LiveData 的version没有保持一致性，Observer 每次的初始�
 
 <table style="width:100%">
   <tr>
-    <th>Example 1</th>
-    <th>Example 2</th>
+    <th>Example 1 粘性事件 数据倒灌</th>
+    <th>Example 2 非粘性事件 数据正常</th>
   </tr>
   <tr>
     <td><img src="screenshots/1.gif"/></td>
