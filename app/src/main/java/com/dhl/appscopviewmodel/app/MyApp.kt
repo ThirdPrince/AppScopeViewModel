@@ -24,7 +24,6 @@ class MyApp : Application(), ViewModelStoreOwner {
 
     override fun onCreate() {
         super.onCreate()
-        Log.e(TAG, "onCreate -->" + Process.myPid())
         AppScope.init(this)
 
     }
