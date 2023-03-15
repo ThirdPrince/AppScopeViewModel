@@ -15,6 +15,9 @@ object AppScope {
         myApp = application
     }
 
+    /**
+     * 获取进程共享的ViewModel
+     */
     fun <T : ViewModel?> getAppScopeViewModel(modelClass: Class<T>): T {
         return ViewModelProvider(myApp).get(modelClass)
     }

@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.dhl.appscopviewmodel.ui.BaseActivity
+import com.dhl.appscopviewmodel.ui.FragmentActivity
 import com.dhl.appscopviewmodel.ui.SecActivity
 import com.dhl.appscopviewmodel.utils.LiveDataBus
 import com.dhl.appscopviewmodel.vm.AppScope
@@ -40,7 +41,7 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
 
         btn.setOnClickListener {
-            val intent = Intent(this, SecActivity::class.java)
+            val intent = Intent(this, FragmentActivity::class.java)
             startActivity(intent)
         }
 

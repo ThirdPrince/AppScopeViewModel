@@ -14,16 +14,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppScopViewModel">
         <activity
+            android:name=".ui.FragmentActivity"
+            android:exported="false"
+            android:label="@string/title_activity_fragment" />
+        <activity
             android:name=".ui.SecActivity"
             android:exported="false"
-            android:label="@string/title_activity_sec"
-            />
-
+            android:label="@string/title_activity_sec" />
         <activity
             android:name=".ui.ThirdActivity"
             android:exported="false"
-            android:label="@string/title_activity_third"
-            />
+            android:label="@string/title_activity_third" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

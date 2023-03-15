@@ -3,6 +3,7 @@ package com.dhl.appscopviewmodel.ui
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.dhl.appscopviewmodel.databinding.ActivitySecBinding
 import com.dhl.appscopviewmodel.utils.LiveDataBus
@@ -17,6 +18,7 @@ class ThirdActivity : BaseActivity() {
 
     private val editViewModel: EditViewModel by lazy {
         AppScope.getAppScopeViewModel(EditViewModel::class.java)
+        ViewModelProvider(this).get(EditViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
