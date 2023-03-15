@@ -5,13 +5,13 @@ import androidx.lifecycle.Observer
 
 /**
  * Observer 包装类
- * 通过改变mLastVersion 的值 就能做到非粘性事件
+ * 通过改变mLastVersion的值就能做到非粘性事件
  *
  */
 class WrapperObserver<T>(
     var liveData: NoStickyLiveData<T>,
     var observer: Observer<in T>,
-    sticky: Boolean,observerForever:Boolean = false
+    sticky: Boolean, observerForever: Boolean = false
 ) : Observer<T> {
 
     private val TAG = "WrapperObserver"
@@ -33,7 +33,6 @@ class WrapperObserver<T>(
         observer?.onChanged(t)
 
     }
-
 
 
 }

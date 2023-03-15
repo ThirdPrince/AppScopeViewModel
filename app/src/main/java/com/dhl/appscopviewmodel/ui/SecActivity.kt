@@ -38,13 +38,12 @@ class SecActivity : BaseActivity() {
 
         tv = findViewById(R.id.tv)
 
-        editViewModel.inputData.observe(this, Observer {
-            it.let {
-                tv?.text = it
-            }
-        })
+//        editViewModel.inputDataNoSticky.observe(this, Observer {
+//            it.let {
+//                tv?.text = it
+//            }
+//        })
         LiveDataBus.withSticky<String>("edit").observe(this, Observer {
-            Log.e(TAG,"it = $it-->${Thread.currentThread().name}}")
             it.let {
                 tv?.text = it
             }

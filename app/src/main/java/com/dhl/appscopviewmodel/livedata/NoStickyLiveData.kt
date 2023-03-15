@@ -8,7 +8,8 @@ import com.dhl.appscopviewmodel.app.MyApp
 import java.util.concurrent.ConcurrentHashMap
 
 /**
- * 非粘性事件
+ * 非粘性事件 sticky 默认false
+ * sticky = true 支持粘性事件
  */
 class NoStickyLiveData<T>(
     private val eventName: String = "default",
@@ -63,7 +64,7 @@ class NoStickyLiveData<T>(
         owner.lifecycle.addObserver(LifecycleEventObserver { source, event ->
             if (event == Lifecycle.Event.ON_DESTROY) {
                 map.let {
-                    if(!sticky){
+                    if (!sticky) {
                         it?.remove(eventName)
                     }
 

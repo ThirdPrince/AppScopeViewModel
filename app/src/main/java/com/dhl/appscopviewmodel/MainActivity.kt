@@ -41,7 +41,7 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
 
         btn.setOnClickListener {
-            val intent = Intent(this, FragmentActivity::class.java)
+            val intent = Intent(this, SecActivity::class.java)
             startActivity(intent)
         }
 

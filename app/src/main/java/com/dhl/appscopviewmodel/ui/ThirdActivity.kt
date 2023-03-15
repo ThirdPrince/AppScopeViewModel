@@ -18,7 +18,7 @@ class ThirdActivity : BaseActivity() {
 
     private val editViewModel: EditViewModel by lazy {
         AppScope.getAppScopeViewModel(EditViewModel::class.java)
-        ViewModelProvider(this).get(EditViewModel::class.java)
+       // ViewModelProvider(this).get(EditViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +31,7 @@ class ThirdActivity : BaseActivity() {
         val fab: FloatingActionButton = binding.fab
 
         fab.setOnClickListener {
-             //editViewModel.inputDataNoSticky.setValue(binding.editQuery.text.toString())
+             editViewModel.inputDataNoSticky.setValue(binding.editQuery.text.toString())
             LiveDataBus.withSticky<String>("edit").setValue(binding.editQuery.text.toString())
             finish()
         }
