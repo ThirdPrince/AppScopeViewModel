@@ -16,7 +16,7 @@ ViewModel 跨activity 使用方法 Application 实现 ViewModelStoreOwner 接口
     
 ```
 
-## LiveDate 处理粘性事件
+## LiveData 处理粘性事件
 
 LiveData 天生支持粘性事件,google 设计LiveData 并不是 为了粘性而设计，但却有粘性的效果。 从 源码的角度看LiveData支持粘性事件的原因是 observer
 version 与 LiveData 的version没有保持一致性，Observer 每次的初始值为-1，这样因为
